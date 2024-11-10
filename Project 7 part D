@@ -1,0 +1,38 @@
+using System;
+using System.Collections.Generic; 
+
+class Program
+{
+    public static Dictionary<string, List<int>> inventory = new Dictionary<string, List<int>>(); 
+
+    public static void Main(string[]args) {
+        // Items added to inventory
+        addNewInventoryItem(inventory,"Potion",1);
+        addNewInventoryItem(inventory,"Hi-Potion",3);
+        addNewInventoryItem(inventory,"Ether",2);
+        addNewInventoryItem(inventory,"Star Seeker",1);
+
+        // Add the new key-value pair here
+        addNewInventoryItem(inventory, "Elixir", 5); // New item added to inventory
+
+        // Output for the items within the inventory that displays the item name and quantity
+        Console.WriteLine("The current player inventory:");
+        foreach (var item in inventory)
+        {
+            Console.WriteLine($"* {item.Key}: {string.Join(", ", item.Value)}");
+        }
+
+    }
+
+    public static void addNewInventoryItem(Dictionary<string, List<int>> inventory, string itemName, int itemQuantity)
+    {
+        if (inventory.ContainsKey(itemName))
+        {
+            inventory[itemName].Add(itemQuantity);
+        } else
+        {
+            inventory[itemName] = new List<int> {itemQuantity};
+        }
+    }
+
+}
